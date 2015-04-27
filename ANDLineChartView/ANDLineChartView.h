@@ -41,7 +41,7 @@
 - (CGFloat)minValue;
 - (CGFloat)maxValue;
 - (NSString*)descriptionForValue:(CGFloat)value;
-
+- (NSString*)descriptionForRow:(NSUInteger)row;
 - (CGFloat)spacingForElementAtRow:(NSUInteger)row;
 @end
 
@@ -54,6 +54,7 @@
 
 // Values may be displayed differently eg. One might want to present 4200 seconds as 01h:10:00
 - (NSString*)chartView:(ANDLineChartView *)chartView descriptionForGridIntervalValue:(CGFloat)interval;
+- (NSString*)chartView:(ANDLineChartView *)chartView descriptionForForElementAtRow:(NSUInteger)row;
 
 - (CGFloat)maxValueForGridIntervalInChartView:(ANDLineChartView *)chartView;
 - (CGFloat)minValueForGridIntervalInChartView:(ANDLineChartView *)chartView;

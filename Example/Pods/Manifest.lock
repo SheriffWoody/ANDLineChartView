@@ -1,5 +1,5 @@
 PODS:
-  - ANDLineChartView (0.2)
+  - ANDLineChartView (0.2.2)
 
 DEPENDENCIES:
   - ANDLineChartView (from `../`)
@@ -9,6 +9,6 @@ EXTERNAL SOURCES:
     :path: ../
 
 SPEC CHECKSUMS:
-  ANDLineChartView: 4fec507b4cdd11ab8eebaab51b20a35014aa27db
+  ANDLineChartView: fc9b4685a444eeb16ea373691962dc71e60dccd1
 
-COCOAPODS: 0.33.1
+COCOAPODS: 0.36.0

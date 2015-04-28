@@ -9,7 +9,7 @@
 #import "ANDLineChartView.h"
 #import "ANDInternalLineChartView.h"
 #import "ANDBackgroundChartView.h"
-
+#import "HDVlineChartView.h"
 #define DEFAULT_ELEMENT_SPACING 30.0
 #define DEFAULT_FONT_SIZE 12.0
 
@@ -20,6 +20,7 @@
     UIScrollView *_scrollView;
     ANDInternalLineChartView *_internalChartView;
     ANDBackgroundChartView *_backgroundChartView;
+    HDVlineChartView *_vLineChartView;
     NSLayoutConstraint *_floatingConstraint;
     NSLayoutConstraint *_backgroundWidthEqualToScrollViewConstraints;
     NSLayoutConstraint *_backgroundWidthEqualToChartViewConstraints;
@@ -36,10 +37,11 @@
         _scrollView.bounces = NO;
         _internalChartView = [[ANDInternalLineChartView alloc] initWithFrame:CGRectZero chartContainer:self];
         _backgroundChartView = [[ANDBackgroundChartView alloc] initWithFrame:CGRectZero chartContainer:self];
-        
+        _vLineChartView = [[HDVlineChartView alloc]initWithFrame:CGRectZero chartContainer:self];
         [_scrollView addSubview:_backgroundChartView];
         [_scrollView addSubview:_internalChartView];
         [self addSubview:_scrollView];
+        [self addSubview:_vLineChartView];
         [self setupDefaultAppearence];
         [self setupInitialConstraints];
     }
@@ -64,13 +66,19 @@
 
 - (void)setupInitialConstraints{
     [_scrollView setTranslatesAutoresizingMaskIntoConstraints:NO];
+    [_vLineChartView setTranslatesAutoresizingMaskIntoConstraints:NO];
     [_internalChartView setTranslatesAutoresizingMaskIntoConstraints:NO];
     [_backgroundChartView setTranslatesAutoresizingMaskIntoConstraints:NO];
     
-    NSDictionary *viewsDict = NSDictionaryOfVariableBindings(_scrollView,_internalChartView,_backgroundChartView);//
+    NSDictionary *viewsDict = NSDictionaryOfVariableBindings(_scrollView,_internalChartView,_backgroundChartView,_vLineChartView);//
     
     [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|[_scrollView]|" options:0 metrics:nil views:viewsDict]];
     [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|[_scrollView]|" options:0 metrics:nil views:viewsDict]];
+    
+    
+    [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|[_vLineChartView(60)]|" options:0 metrics:nil views:viewsDict]];
+    
+    [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|[_vLineChartView]|" options:0 metrics:nil views:viewsDict]];
     
     [_scrollView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|[_internalChartView]|" options:0 metrics:nil views:viewsDict]];
     
@@ -142,14 +150,14 @@
     CGFloat spacing = [self elementSpacing];
     if(_delegate && [_delegate respondsToSelector:@selector(chartView:spacingForElementAtRow:)]){
         CGFloat newSpacing = [_delegate chartView:self spacingForElementAtRow:row];
-        NSAssert(newSpacing > 0, @"Spacing cannot be smaller than 0.0");
+//        NSAssert(newSpacing > 0, @"Spacing cannot be smaller than 0.0");
         CGSize imageSize = [_internalChartView.circleImage size];
         newSpacing += (row == 0)
         ? imageSize.width/2.0
         : imageSize.width;
-        if(newSpacing > 0) spacing = newSpacing;
+        if(newSpacing > 0)
+            spacing = newSpacing;
     }
-    
     return spacing;
 }
 

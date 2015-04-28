@@ -77,6 +77,8 @@
         NSUInteger r = arc4random_uniform((u_int32_t)_maxValue + 1);
         [array addObject:@(r)];
     }
+    [array insertObject:[NSNumber numberWithInteger:0] atIndex:0];
+    array = @[@0,@5,@10,@20,@2,@12,@2,@16,@11];
     return array;
 }
 
@@ -88,7 +90,7 @@
 #pragma mark - ANDLineChartViewDataSource methods
 
 - (NSUInteger)numberOfElementsInChartView:(ANDLineChartView *)graphView{
-    return _numbersCount;
+    return _elements.count;
 }
 
 - (CGFloat)chartView:(ANDLineChartView *)graphView valueForElementAtRow:(NSUInteger)row{
@@ -100,7 +102,7 @@
 }
 
 - (CGFloat)minValueForGridIntervalInChartView:(ANDLineChartView *)graphView{
-    return -2.0;
+    return 0.0;
 }
 
 - (NSUInteger)numberOfGridIntervalsInChartView:(ANDLineChartView *)graphView{
@@ -109,6 +111,9 @@
 
 - (NSString *)chartView:(ANDLineChartView *)chartView descriptionForForElementAtRow:(NSUInteger)row
 {
+    if (row == 0) {
+        return @"111";
+    }
     return @"12";
 }
 

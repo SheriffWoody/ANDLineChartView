@@ -8,6 +8,8 @@
 
 #import <UIKit/UIKit.h>
 
+#define BottomSpace 40
+
 @protocol ANDLineChartViewDataSource,ANDLineChartViewDelegate;
 
 @interface ANDLineChartView : UIView

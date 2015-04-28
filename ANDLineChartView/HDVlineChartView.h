@@ -1,15 +1,14 @@
 //
-//  ANDBackgroundChartView.h
+//  HDVlineChartView.h
 //  Pods
 //
-//  Created by Andrzej Naglik on 14.09.2014.
+//  Created by hudi on 15/4/28.
 //
 //
 
 #import <UIKit/UIKit.h>
 @class ANDLineChartView;
 
-@interface ANDBackgroundChartView : UIView
+@interface HDVlineChartView : UIView
 - (instancetype)initWithFrame:(CGRect)frame chartContainer:(ANDLineChartView*)chartContainer;
-@property (nonatomic,readonly)UIView *rulerView;
 @end

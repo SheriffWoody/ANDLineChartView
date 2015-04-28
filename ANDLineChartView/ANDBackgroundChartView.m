@@ -14,7 +14,6 @@
 
 @interface ANDBackgroundChartView()
 @property (nonatomic, weak) ANDLineChartView *chartContainer;
-@property (nonatomic,readwrite)UIView *rulerView;
 @end
 
 @implementation ANDBackgroundChartView
@@ -26,7 +25,6 @@
         [self setChartContainer:chartContainer];
         self.backgroundColor = [UIColor redColor];
         
-        _rulerView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, 0, frame.size.height)];
     }
     return self;
 }

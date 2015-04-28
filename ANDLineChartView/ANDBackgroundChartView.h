@@ -11,5 +11,4 @@
 
 @interface ANDBackgroundChartView : UIView
 - (instancetype)initWithFrame:(CGRect)frame chartContainer:(ANDLineChartView*)chartContainer;
-@property (nonatomic,readonly)UIView *rulerView;
 @end
